@@ -1,0 +1,348 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+
+/* GENERAL ELEMENTS */
+
+body {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-family: "Oswald", sans-serif;
+  background: linear-gradient(to bottom, red, black);
+  color: #fff;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 2.5rem;
+  color: #ff5722; /* Vibrant orange */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+.section {
+  padding: 15rem 3rem;
+  border-top: 5px solid #661b1b;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  transition: transform 1s, opacity 1s;
+}
+
+/* btn css*/
+
+.btn:hover {
+  background-color: orange;
+}
+
+button:focus {
+  outline: none;
+}
+
+.section--sign-up .btn {
+  font-size: 1.9rem;
+  padding: 2rem 5rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 5px 10px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-family: inherit;
+  font-weight: 200;
+  border: none;
+  border-radius: 2rem;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+/*  yet to get*/
+p {
+  color: #740505;
+}
+
+img {
+  transition: filter 0.5s;
+}
+
+/* NAVIGATION */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 9rem;
+  width: 100%;
+  padding: 0 6rem;
+  z-index: 100;
+}
+
+/* nav */
+
+.nav__logo {
+  height: 4.5rem;
+  transition: all 0.3s;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.nav__item {
+  margin-left: 4rem;
+}
+
+.nav__link:link,
+.nav__link:visited {
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s;
+}
+
+.nav__link--btn:link,
+.nav__link--btn:visited {
+  padding: 0.8rem 2.5rem;
+  border-radius: 3rem;
+  background-color: var(--color-primary);
+  color: #222;
+}
+
+.nav__link--btn:hover,
+.nav__link--btn:active {
+  color: inherit;
+  background-color: var(--color-primary-darker);
+  color: #333;
+}
+
+/* HEADER */
+.header {
+  background-image: url("love.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding: 0 3rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__title {
+  flex: 1;
+
+  max-width: 115rem;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  row-gap: 3rem;
+  align-content: center;
+  justify-content: center;
+
+  align-items: start;
+  justify-items: start;
+}
+.header__img {
+  width: 100%;
+
+  grid-column: 2 / 3;
+  grid-row: 1 / span 4;
+  transform: translateY(-6rem);
+}
+/* text */
+h1 {
+  font-size: 5.5rem;
+  line-height: 1.35;
+}
+
+h4 {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+/* cool looking start */
+.highlight {
+  position: relative;
+
+  font-size: 2.5rem; /* Adjust the size to your preference */
+  text-align: center; /* Center the text */
+  color: red; /* Text color */
+  padding: 20px; /* Space inside the border */
+  margin: 20px auto; /* Space around the element */
+  width: fit-content; /* Shrink to fit the text */
+  background-color: #222; /* Add a subtle background to highlight the text */
+  border: 5px solid red; /* Red border */
+  border-radius: 10px; /* Rounded corners for a sleek look */
+  box-shadow: 0px 4px 6px rgba(255, 0, 0, 0.3); /* Add a shadow for depth */
+}
+
+/* container and slider css (items and card )*/
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  overflow: hidden;
+}
+
+.card-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.card-link {
+  display: block;
+  text-decoration: none;
+}
+
+.card {
+  width: 200px;
+  height: 300px;
+  border: 5px solid #e60000;
+  position: relative;
+  background-color: black;
+  color: white;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.card-details {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 18px;
+  margin: 0;
+  padding: 5px 0;
+  background-color: rgb(255, 166, 0);
+}
+
+/* title (soon , now) */
+.title {
+  text-align: center;
+
+  color: red; /* Red text color */
+  font-size: 2.5rem; /* Adjust font size as needed */
+  font-weight: bold;
+  text-transform: uppercase; /* Make text uppercase */
+  text-align: center; /* Center the title */
+  border: 2px solid black; /* Black border around the text */
+  padding: 10px 20px; /* Add some padding for the border */
+  border-radius: 15px; /* Rounded corners for the border */
+  background-color: rgb(0, 0, 0); /* Slight black background */
+}
+
+/* team about section css*/
+.divs {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 140px;
+  margin-bottom: 140px;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    90deg,
+    #ff4500,
+    #e91e63
+  ); /* Cool orange-red gradient */
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 600px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.person:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.person img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff; /* White border for contrast */
+  margin-right: 20px;
+}
+
+.person .info {
+  text-align: left;
+}
+
+.person h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #ffe57f; /* Bright yellow-orange */
+}
+
+.person p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+  color: #fff;
+  opacity: 0.9;
+}
