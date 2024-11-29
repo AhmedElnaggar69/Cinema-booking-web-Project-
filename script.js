@@ -72,3 +72,32 @@ const bookNowButtons = document.querySelectorAll(".book-now");
 bookNowButtons.forEach((button) => {
   button.addEventListener("click", () => showNotification("Ticket booked"));
 });
+//
+// Select the modal, close button, and open buttons
+const modal = document.querySelector(".modal");
+const btnCloseModal = document.querySelector(".btn--close-modal");
+const btnsOpenModal = document.querySelectorAll(".sign");
+
+// Function to open the modal
+const openModal = function (e) {
+  e.preventDefault(); 
+  modal.classList.remove("hidden"); 
+  modal.style.display = "block"; 
+};
+
+// Function to close the modal
+const closeModal = function () {
+  modal.classList.add("hidden"); // Add the hidden class
+  modal.style.display = "none"; 
+};
+
+btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
+
+btnCloseModal.addEventListener("click", closeModal);
+
+// Close modal 
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    closeModal();
+  }
+});
