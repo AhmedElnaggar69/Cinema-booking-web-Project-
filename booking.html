@@ -3,7 +3,213 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cinema Halls</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-image: url("love.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+      }
+
+      select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 2px solid #444;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: #e74c3c;
+        color: #fff;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #c0392b;
+      }
+
+      .movie-display {
+        margin: 20px 0;
+        padding: 20px;
+        background: #1c1c1c;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+      }
+
+      .movie-display h3 {
+        margin-bottom: 10px;
+      }
+
+      .seat-grid {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .seat {
+        width: 30px;
+        height: 30px;
+        background-color: #ff04b4;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .seat:hover {
+        background-color: #fcc205;
+      }
+
+      .seat.selected {
+        background-color: #920101da;
+      }
+      .get-seat {
+        position: relative;
+
+        font-size: 2.5rem; /* Adjust the size to your preference */
+        text-align: center; /* Center the text */
+        color: red; /* Text color */
+        padding: 20px; /* Space inside the border */
+        margin: 20px auto; /* Space around the element */
+        width: fit-content; /* Shrink to fit the text */
+        background-color: #222; /* Add a subtle background to highlight the text */
+        border: 5px solid red; /* Red border */
+        border-radius: 10px; /* Rounded corners for a sleek look */
+        box-shadow: 0px 4px 6px rgba(255, 0, 0, 0.3); /* Add a shadow for depth */
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1 class="get-seat">get your seat</h1>
+
+      <label for="hall">Choose a Hall:</label>
+      <select id="hall">
+        <option value="">Select a hall</option>
+        <option value="1">Hall 1</option>
+        <option value="2">Hall 2</option>
+      </select>
+
+      <label for="time">Choose a Time:</label>
+      <select id="time" disabled>
+        <option value="">Select a time</option>
+      </select>
+
+      <div class="movie-display" id="movie-display">
+        <h3>Movie:</h3>
+        <p id="movie-title">
+          Please select a hall and time to see the movie details.
+        </p>
+        <div class="seat-grid" id="seat-grid" style="display: none"></div>
+        <button class="btn" id="pay-btn" style="display: none">Pay</button>
+      </div>
+    </div>
+
+    <script>
+      const movieSchedule = {
+        1: {
+          "7:00 PM": "love exposure",
+          "9:00 PM": "ichi the killer",
+        },
+        2: {
+          "6:00 PM": "beach bum",
+          "8:00 PM": "i stand alone",
+        },
+      };
+
+      const hallSelect = document.getElementById("hall");
+      const timeSelect = document.getElementById("time");
+      const movieTitle = document.getElementById("movie-title");
+      const movieDisplay = document.getElementById("movie-display");
+      const seatGrid = document.getElementById("seat-grid");
+      const payBtn = document.getElementById("pay-btn");
+
+      hallSelect.addEventListener("change", () => {
+        const selectedHall = hallSelect.value;
+        timeSelect.innerHTML = '<option value="">Select a time</option>';
+        timeSelect.disabled = true;
+        movieTitle.textContent =
+          "Please select a time to see the movie details.";
+        seatGrid.style.display = "none";
+        payBtn.style.display = "none";
+
+        if (selectedHall && movieSchedule[selectedHall]) {
+          timeSelect.disabled = false;
+          Object.keys(movieSchedule[selectedHall]).forEach((time) => {
+            const option = document.createElement("option");
+            option.value = time;
+            option.textContent = time;
+            timeSelect.appendChild(option);
+          });
+        }
+      });
+
+      timeSelect.addEventListener("change", () => {
+        const selectedHall = hallSelect.value;
+        const selectedTime = timeSelect.value;
+        seatGrid.style.display = "none";
+        payBtn.style.display = "none";
+
+        if (
+          selectedHall &&
+          selectedTime &&
+          movieSchedule[selectedHall][selectedTime]
+        ) {
+          movieTitle.textContent = movieSchedule[selectedHall][selectedTime];
+          seatGrid.style.display = "grid";
+          payBtn.style.display = "block";
+
+          seatGrid.innerHTML = "";
+          for (let i = 0; i < 8; i++) {
+            const seat = document.createElement("div");
+            seat.classList.add("seat");
+            seat.addEventListener("click", () => {
+              seat.classList.toggle("selected");
+            });
+            seatGrid.appendChild(seat);
+          }
+        }
+      });
+
+      payBtn.addEventListener("click", () => {
+        const selectedSeats =
+          document.querySelectorAll(".seat.selected").length;
+        if (selectedSeats > 0) {
+          alert(
+            `Payment successful for "${movieTitle.textContent}" with ${selectedSeats} seat(s) selected!`
+          );
+        } else {
+          alert("Please select at least one seat.");
+        }
+      });
+    </script>
+  </body>
 </html>
